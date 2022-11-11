@@ -38,7 +38,7 @@ frontend Local_Server
         default_backend Web_Servers
 
 frontend www-https
-        bind *:443 ssl crt /etc/haproxy/ssl/www.thibaut.tech
+        bind *:443 ssl crt /etc/ssl/certs/www.thibaut.tech
         http-request set-header X-Forwarded-Proto https
         default_backend web-backend
 
