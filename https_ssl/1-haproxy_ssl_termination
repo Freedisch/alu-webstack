@@ -34,15 +34,11 @@ defaults
         errorfile 504 /etc/haproxy/errors/504.http
 frontend Local_Server
         bind *:80
+        bind *:443 ssl crt /etc/ssl/certs/all.pem
         mode http
         default_backend Web_Servers
-
-frontend www-https
-        bind *:443 ssl crt /etc/haproxy/ssl/www.thibaut.tech
-        http-request set-header X-Forwarded-Proto https
-        default_backend web-backend
-
 backend Web_Servers
+        redirect scheme https unless { ssl_fc }
         balance roundrobin
         mode http
         server web-01 184.73.17.147:80 check
