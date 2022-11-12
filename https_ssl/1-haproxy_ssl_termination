@@ -36,8 +36,8 @@ frontend Local_Server
         bind *:80
         bind *:443 ssl crt /etc/ssl/certs/all.pem
         mode http
-        default_backend Web_Servers
-backend Web_Servers
+        default_backend Haproxy_Server
+backend Haproxy_Server
         redirect scheme https unless { ssl_fc }
         balance roundrobin
         mode http
